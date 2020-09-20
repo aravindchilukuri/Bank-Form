@@ -1,0 +1,86 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header">Bank Branch List</h4>
+    <div class="card-body">
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="users">
+            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+        </ul>
+        <div>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Branch Name</th>
+                        <th>IFSC Code</th>
+                        <th>Bank</th>
+                        <th>District</th>
+                        <th>State</th>
+                        <th>Action</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let field of fieldArray; let i = index">
+                        <td>
+                            <input [(ngModel)]="field.branchname" class="form-control" type="text" name="{{field.branchname}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="field.ifsc" class="form-control" type="text" name="{{field.ifsc}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="field.bank" class="form-control" type="text" name="{{field.bank}}" />
+                        </td>
+                        <td>
+                            <input [(ngModel)]="field.district" class="form-control" type="text" name="{{field.district}}" />
+                        </td>
+       
+                        <td>
+                            <input [(ngModel)]="field.state" class="form-control" type="text" name="{{field.state}}" />
+                        </td>
+                        <td>
+                            <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
+                        </td>
+                
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeBranch" [(ngModel)]="newAttribute.branchname" name="newAttributeBranch" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeIfsc" [(ngModel)]="newAttribute.ifsc" name="newAttributeIfsc" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeBank" [(ngModel)]="newAttribute.bank" name="newAttributeBank" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeDistrict" [(ngModel)]="newAttribute.district" name="newAttributeDistrict" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="newAttributeState" [(ngModel)]="newAttribute.state" name="newAttributeState" />
+                        </td>
+                      
+                        <td>
+                            <button class="btn btn-default" type="button" (click)="addFieldValue()">Add</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="buttonView">
+                <button (click)="onGetLocalValues()">User Details</button>
+            </div>
+          
+            <div class="row">
+                <div class="column"  *ngFor="let card of onGetValues">
+                  <div class="card">
+                      <h5 class="card-title">{{card.branchname}}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{card.ifsc}}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">{{card.bank}}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">{{card.district}}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">{{card.state}}</h6>
+                    </div>
+                  </div>
+                  
+           
+        </div>
+    </div>
+</div>

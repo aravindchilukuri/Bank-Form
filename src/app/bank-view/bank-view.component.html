@@ -1,0 +1,85 @@
+<div class="container row padding-0">
+    <h2>Bank IFSC Code (Public View)</h2>
+    <form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()">
+
+        <div class="col-sm-9 display">
+            <div class="form-group">
+                <label  class="control-label col-xs-3">Select your bank</label>
+            </div>
+
+            <div class="col-sm-4">
+
+                <select formControlName="bank">
+                    <option>ChooseBank</option>
+                    <option *ngFor="let ban of bank">{{ban}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-9 display">
+            <div class="form-group">
+                <label  class="control-label col-xs-3">Branch of Bank within District</label>
+
+            </div>
+
+            <div class="col-sm-4"><select formControlName="district">
+                    <option>Branch</option>
+                    <option *ngFor="let disb of district">{{disb}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-9 display">
+            <div class="form-group">
+
+                <label class="control-label col-xs-3">State in which bank is situated</label>
+            </div>
+
+            <div class="col-sm-4">
+                <select formControlName="state">
+                    <option>State</option>
+                    <option *ngFor="let st of state">{{st}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-9 display">
+            <div class="form-group">
+                <label  class="control-label col-xs-3">District in which bank is situated</label>
+            </div>
+
+            <div class="col-sm-4"><select formControlName="branchname">
+                    <option>district</option>
+                    <option *ngFor="let bran of branchname">{{bran}}</option>
+                </select>
+            </div>
+        </div>
+     
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+    <div class="margin-top">
+        <h2>Search Bank Details via IFSC Code</h2>
+        <form (ngSubmit)="inputSubmit($event)">
+            <label>Enter IFSC Code to know Bank details</label>
+            <input name="player" value="">
+            <button type="submit" class="btn btn-primary">get details</button>
+        </form>
+    </div>
+ 
+       <div class="overlay" *ngIf="popup">
+           <div class="popup">
+               <h2>IFSC of {{bankView.bank}}</h2>
+               <a class="close" (click)="popup = false">&times;</a>
+              <div>Branch Name : {{bankView.branchname}}</div>
+              <div>Bank Name: {{bankView.bank}}</div>
+              <div>District: {{bankView.district}}</div>
+              <div>IFSC CODE: {{bankView.ifsc}}</div>
+              <div>Stage: {{bankView.state}}</div>
+           </div>
+       </div>    
+       
+        <div class="popup" *ngIf = "!bankView">
+        <h2>{{noResults}}</h2>
+       </div>
+</div>
